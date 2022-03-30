@@ -1,0 +1,83 @@
+﻿@model SupermarketAPI.Models.Product
+
+@{
+    ViewData["Title"] = "Agregar articulo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Nuevo producto</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-10">
+            <form method="post" asp-action="create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ProductName" class="contol-label"></label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Department" class="contol-label"></label>
+                    <input asp-for="Department" class="form-control" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductDescription" class="contol-label"></label>
+                    <input asp-for="ProductDescription" class="form-control" />
+                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Inventory" class="contol-label"></label>
+                    <input asp-for="Inventory" class="form-control" />
+                    <span asp-validation-for="Inventory" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Price" class="contol-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Active" class="contol-label">
+                        Activo
+                        <input type="checkbox" data-toggle="toggle" />
+                    </label>                 
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Perishable" class="contol-label">
+                        Perecedero
+                        <input type="checkbox" data-toggle="toggle" />
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Expirationdate" class="contol-label"></label>
+                    <input asp-for="Expirationdate" class="form-control" />
+                    <span asp-validation-for="Expirationdate" class="text-danger"></span>
+                </div>
+
+                <div = class="form-group">
+                    <input type="submit" value="Agregar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@* Para cargar validaciónde campos por parte del cliente (que no muestre msj de error del servidor) *@
+
+@section Scripts{
+    @{<partial name="_ValidationScriptsPartial" />}
+}

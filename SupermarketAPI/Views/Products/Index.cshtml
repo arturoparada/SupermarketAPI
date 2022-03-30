@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SupermarketAPI.Models.Product>
+@{
+    ViewData["Title"] = "Listado de productos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    @if (TempData["mensaje"] != null)
+    {
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type"button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Catalogo de productos</h3>
+        </div>
+
+          <div class="col-sm-6">
+            <a class="btn btn-success" asp-action="create" asp-controller="products">Agregar Producto</a>
+        </div>
+
+    </div>
+
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class =table table-bordered table-striped>
+                <thread>
+                    <tr>
+                        <td>@Html.DisplayNameFor(m => m.Id)</td>
+                        <td>@Html.DisplayNameFor(m => m.ProductName)</td>
+                        <td>@Html.DisplayNameFor(m => m.Department)</td>
+                        <td>@Html.DisplayNameFor(m => m.ProductDescription)</td>
+                        <td>@Html.DisplayNameFor(m => m.Inventory)</td>
+                        <td>@Html.DisplayNameFor(m => m.Price)</td>
+                        <td>@Html.DisplayNameFor(m => m.Active)</td>
+                        <td>@Html.DisplayNameFor(m => m.Perishable)</td>
+                        <td>@Html.DisplayNameFor(m => m.Expirationdate)</td>
+                        <td>Acciones<td/>          
+                    </tr>
+                </thread>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>@item.Id</td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Department</td>
+                        <td>@item.ProductDescription</td>
+                        <td>@item.Inventory</td>
+                        <td>@item.Price</td>
+                        <td>@item.Active</td>
+                        <td>@item.Perishable</td>
+                        <td>@item.Expirationdate</td>                        
+                        <td>
+                            <a class="btn btn-warning" asp-action="edit" asp-controller="products" asp-route-id="@item.Id">Editar</a>
+                            <a class="btn btn-danger" asp-action="delete" asp-controller="products" asp-route-id="@item.Id">Borrar</a>
+                            @*<a asp-controller="products" actions="modificar" asp-route-id="@item.Id" class="btn btn-warning">Editar</a>
+                            <a asp-controller="products" actions="delete" asp-route-id="@item.Id" class="btn btn-danger">Eliminar</a>*@
+                        <td/>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No existen registros</p>
+        }
+
+    </div>
+
+</div>
+
